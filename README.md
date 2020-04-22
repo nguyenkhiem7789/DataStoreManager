@@ -1,6 +1,6 @@
 # DataStoreManager
 
-	"Android Keystore cung cấp một lưu trữ chứng chỉ cấp hệ thống an toàn . <br>Với keystore, ứng dụng có thể tạo ra cặp Private/Public key và sử dụng nó để mã hóa dữ liệu trước khi lưu nó vào thư mục lưu trữ riêng."
+	"Android Keystore cung cấp một lưu trữ chứng chỉ cấp hệ thống an toàn . <br/> Với keystore, ứng dụng có thể tạo ra cặp Private/Public key và sử dụng nó để mã hóa dữ liệu trước khi lưu nó vào thư mục lưu trữ riêng."
 
 How to
 
