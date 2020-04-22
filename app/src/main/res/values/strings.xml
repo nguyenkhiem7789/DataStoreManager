@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">DataStoreManager</string>
+
+    <string name="save_to_preferences">Đã lưu giữ liệu mã hoá tới SharedPreferences</string>
+    <string name="require_alias">Alias không được rỗng</string>
+    <string name="require_start_text">Start Text không được rỗng</string>
+    <string name="require_encrypt_text">Text mã hoá không được rỗng</string>
 </resources>

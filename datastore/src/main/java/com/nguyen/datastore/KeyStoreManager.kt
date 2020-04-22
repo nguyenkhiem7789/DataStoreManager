@@ -1,6 +1,5 @@
 package com.nguyen.datastore
 
-import android.app.AlertDialog
 import android.content.Context
 import android.security.KeyPairGeneratorSpec
 import android.util.Base64
@@ -11,7 +10,6 @@ import java.io.ByteArrayOutputStream
 import java.math.BigInteger
 import java.security.KeyPairGenerator
 import java.security.KeyStore
-import java.security.KeyStoreException
 import java.security.PrivateKey
 import java.util.*
 import javax.crypto.Cipher
@@ -36,10 +34,10 @@ interface KeyStoreManagerImpl {
 object KeyStoreManager: KeyStoreManagerImpl {
 
     const val TAG = "SimpleKeystoreApp"
-    const val CIPHER_TYPE = "RSA/ECB/PKCS1Padding"
-    const val CIPHER_PROVIDER = "AndroidKeyStoreBCWorkaround"
+    private const val CIPHER_TYPE = "RSA/ECB/PKCS1Padding"
+    private const val CIPHER_PROVIDER = "AndroidKeyStoreBCWorkaround"
 
-    val keyStore: KeyStore by lazy {
+    private val keyStore: KeyStore by lazy {
         KeyStore.getInstance("AndroidKeyStore")
     }
 
@@ -85,25 +83,12 @@ object KeyStoreManager: KeyStoreManagerImpl {
     }
 
     override fun deleteKey(context: Context, alias: String) {
-        val alertDialog = AlertDialog.Builder(context)
-            .setTitle("Delete Key")
-            .setMessage("Do you want to delete the key \"$alias\" from the keystore?")
-            .setPositiveButton("Yes") { dialog, which ->
-                try {
-                    keyStore.deleteEntry(alias)
-                } catch (e: KeyStoreException) {
-                    Toast.makeText(context, "Exception " + e.message + " occured", Toast.LENGTH_LONG).show()
-                    Log.e(TAG, Log.getStackTraceString(e))
-                }
-                dialog.dismiss()
-            }
-            .setNegativeButton("No") { dialog, which -> dialog.dismiss() }
-            .create()
-        alertDialog.show()
+        keyStore.deleteEntry(alias)
     }
 
     override fun encryptString(context: Context, alias: String, text: String): String? {
         try {
+            Log.v(TAG, "alias = $alias")
             val privateKeyEntry = keyStore.getEntry(alias, null) as KeyStore.PrivateKeyEntry
             val publicKey = privateKeyEntry.certificate.publicKey
             Log.v(TAG, "public key = $publicKey")

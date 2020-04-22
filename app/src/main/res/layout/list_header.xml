@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:gravity="center_horizontal"
     android:padding="16dp">
 
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/generateKeyPair"
         android:layout_centerHorizontal="true"
-        android:hint="initial text"/>
+        android:hint="text"/>
 
     <EditText
         android:id="@+id/encryptedText"
@@ -37,17 +37,25 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/startText"
         android:layout_centerHorizontal="true"
-        android:editable="false"
         android:textIsSelectable="true"
-        android:hint="final text"/>
+        android:hint="encrypted text"/>
+
+    <Button
+        android:id="@+id/saveToSharedPreferences"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/encryptedText"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentRight="true"
+        android:text="Save To SharedPreferences"
+        android:onClick="createNewKeys" />
 
     <EditText
         android:id="@+id/decryptedText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/encryptedText"
+        android:layout_below="@id/saveToSharedPreferences"
         android:layout_centerHorizontal="true"
-        android:editable="false"
         android:textIsSelectable="true"
-        android:hint="decrypt result"/>
+        android:hint="decrypted text"/>
 </RelativeLayout>
